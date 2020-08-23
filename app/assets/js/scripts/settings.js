@@ -359,8 +359,8 @@ function bindAuthAccountLogOut(){
             if(Object.keys(ConfigManager.getAuthAccounts()).length === 1){
                 isLastAccount = true
                 setOverlayContent(
-                    'Warning<br>This is Your Last Account',
-                    'In order to use the launcher you must be logged into at least one account. You will need to login again after.<br><br>Are you sure you want to log out?',
+                    'Warning<br>Ceci est votre seul compte',
+                    'Pour utiliser le launcher vous devez étre connecté.<br><br>Vous êtes sur de vouloir vois déconnecter ?',
                     'I\'m Sure',
                     'Cancel'
                 )
@@ -1219,7 +1219,7 @@ function populateAboutVersionInformation(){
  */
 function populateReleaseNotes(){
     $.ajax({
-        url: 'https://github.com/dscalzi/HeliosLauncher/releases.atom',
+        url: '#',
         success: (data) => {
             const version = 'v' + remote.app.getVersion()
             const entries = $(data).find('entry')
@@ -1239,7 +1239,7 @@ function populateReleaseNotes(){
         },
         timeout: 2500
     }).catch(err => {
-        settingsAboutChangelogText.innerHTML = 'Failed to load release notes.'
+        settingsAboutChangelogText.innerHTML = 'Les notes de mises à jour sont indisponibles.'
     })
 }
 
@@ -1301,7 +1301,7 @@ function populateSettingsUpdateInformation(data){
             settingsUpdateButtonStatus('Downloading..', true)
         }
     } else {
-        settingsUpdateTitle.innerHTML = 'You Are Running the Latest Version'
+        settingsUpdateTitle.innerHTML = 'Vous avez la derniere version.'
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         settingsUpdateButtonStatus('Check for Updates', false, () => {
